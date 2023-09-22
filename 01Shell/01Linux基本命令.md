@@ -1,5 +1,12 @@
 ## Linux 基本命令
 
+### rsync
+
+```shell
+当您传输大量需要一些时间的文件时，rsync 命令会显示空白输出。光标只是闪烁，没有任何信息。这让您想知道文件是正在传输还是只是试图连接到远程服务器。rsync 是一个多功能工具，它可以显示文件传输的状态。
+只需添加--progress到您的 rsync 命令，它就会开始显示正在传输的文件：
+```
+
 ### lsof
 
 lsof（list open files）是一个列出当前系统打开文件的工具
@@ -723,9 +730,11 @@ $ dirname $(readlink -f deploy-small.sh)
 /home/centos/tmp/706
 ```
 
-### 无交互修改用户密码
+### 无交互修改root用户密码
 
-echo 'password'|passwd --stdin root
+```shell
+echo 'NewPasswd' | passwd --stdin root
+```
 
 ### 查看端口占用
 
@@ -738,6 +747,22 @@ tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      
 tcp6       0      0 :::22                   :::*                    LISTEN      878/sshd            
 tcp6       0      0 ::1:25                  :::*                    LISTEN      1092/master 
 ```
+
+### 查看僵尸进程
+
+```shell
+ps -A -ostat,ppid,pid,cmd |grep -e '^[Zz]'
+
+-A  参数列出所有进程
+-o  自定义输出字段 stat（状态）、ppid（进程父id）、pid（进程id）、cmd（命令）
+因为状态为z或者Z的进程为僵尸进程，所以我们使用grep抓取stat状态为zZ进程
+```
+
+
+
+
+
+
 
 
 

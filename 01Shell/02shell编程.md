@@ -774,6 +774,12 @@ name3 name2 name1 name4
   可简写为
   [ $USER == 'root' ] && echo "管理员， 你好" || echo "guest, 你好"
   ```
+  
+- 查看占用swap前10的进程
+
+  ```shell
+  for i in $( cd /proc;ls |grep "^[0-9]"|awk ' $0 >100') ;do awk '/Swap:/{a=a+$2}END{print '"$i"',a/1024"M"}' /proc/$i/smaps 2>/dev/null ; done | sort -k2nr | head -10
+  ```
 
 
 ## 八、FOR循环
