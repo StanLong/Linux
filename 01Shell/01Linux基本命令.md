@@ -7,6 +7,10 @@
 只需添加--progress到您的 rsync 命令，它就会开始显示正在传输的文件：
 ```
 
+### top
+
+https://zhuanlan.zhihu.com/p/355962068
+
 ### lsof
 
 lsof（list open files）是一个列出当前系统打开文件的工具
