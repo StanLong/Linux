@@ -1302,11 +1302,11 @@ sed -n '3,$p' test.txt
 5 the quick brown fox jumps over the lazy dog.
 ```
 
-
-
 ## 十三、awk命令
 
 awk是一种可以处理数据、产生格式化报表的语言，它将每一行数据视为一条记录，每条记录以字段分隔符分隔，然后输出各个字段的值。
+
+### 1、命令格式
 
 ```shell
 语法:
@@ -1447,6 +1447,26 @@ awk 'END{print $0}' data
 awk 'END{print NF}' data
 # 去重
 awk '!($1 in a){a[$1];print $1}'
+```
+
+### 2、实例
+
+合计每人1月工资， 0：manager， 1：worker
+
+```shell
+# 文件准备
+[root@gmall ~]# cat awk.txt 
+Tom	0	2012-12-11	car	3000
+John	1	2013-01-13	bike	1000
+vivi	1	2013-01-18	car	2800
+Tom	0	2013-01-20	car	2500
+John	1	2013-01-28	bike	3500
+
+# 按报表格式统计工资
+[root@gmall ~]# awk '{split($3,date,"-");if(date[2]=="01"){name[$1]+=$5}} END{for(i in name){print i"\t"name[i]}}' awk.txt 
+vivi	2800
+Tom	2500
+John	4500
 ```
 
 
