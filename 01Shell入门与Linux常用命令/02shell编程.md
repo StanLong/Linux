@@ -1369,7 +1369,7 @@ awk 定义变量
 awk 'BEGIN{name="stanlong";print name}' # 方式1
 awk -v 'count=0' 'BEGIN{count++; print count}' # 方式2
 
-awk 定义数组
+awk 定义数组， awk的数组下标从1开始
 awk 'BEGIN{array[1]="stanlong";array[2]=18;print array[1],array[2]}'
 
 awk 匹配
