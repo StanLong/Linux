@@ -1467,6 +1467,12 @@ John	1	2013-01-28	bike	3500
 vivi	2800
 Tom	2500
 John	4500
+
+# 扩展，统计工资的同时打印出员工的职位
+[root@gmall ~]# awk '{split($3,date,"-");if(date[2]=="01"){name[$1]+=$5;if($2=="0"){role[$1]="M"}else{role[$1]="W"}}} END{for(i in name){print i"\t"name[i]"\t"role[i]}}' awk.txt 
+vivi	2800	W
+Tom	2500	M
+John	4500	W
 ```
 
 
