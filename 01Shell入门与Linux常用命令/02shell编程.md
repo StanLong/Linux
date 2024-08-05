@@ -59,6 +59,48 @@ shell是一个程序，采用C语言编写，是用户和Linux内核沟通的桥
 | 1>&2 >/dev/null | 意思是把标准输出重定向到标准错误后重定向到/dev/null          |
 | &> /dev/null    | 不管你是啥玩意儿文件描述符，通通重定向到/dev/null            |
 
+### (一)、引用与命令替换
+
+建一个测试文件 test.sh
+
+```shell
+[root@node01 ~]# vim test.sh 
+```
+
+```shell
+#!/bin/bash
+do_date=$1
+
+echo '$do_date'
+echo "$do_date"
+echo "'$do_date'"
+echo '"$do_date"'
+echo `date`
+```
+
+查看执行结果
+
+```shell
+[root@node01 ~]# test.sh 2020-06-14
+$do_date
+2020-06-14
+'2020-06-14'
+"$do_date"
+2020年 06月 18日 星期四 21:02:08 CST
+```
+
+总结
+
+（1）单引号不取变量值
+
+（2）双引号取变量值
+
+（3）反引号`，执行引号中命令
+
+（4）双引号内部嵌套单引号，取出变量值
+
+（5）单引号内部嵌套双引号，不取出变量值
+
 ## 三、格式化输入输出
 
 **格式化输出： echo** 
@@ -1232,7 +1274,7 @@ w filename:         将替换的结果写入文件
 1 the quick brown fox jumps over the lazy dog.
 2 the quick brown fox jumps over the lazy dog.
 3 the quick brown fox jumps over the lazy dog.
-4 the quick brown fox jumps over the lazy dog.
+4 the quick brown fox jumps over the lazy cat.
 5 the quick brown fox jumps over the lazy dog.
 
 # 行后插入
@@ -1249,6 +1291,8 @@ sed '3i\hello world' test.txt # 在第三行前面追加 hello world
 # 删除
 sed 'd' test.txt # 删除所有
 sed '3d' test.txt # 删除第三行
+sed '/cat/d' test.txt # 删除包含 cat 的行
+sed '/^cat$/d' test.txt # 删除完全匹配 cat 的行
 
 # 查找替换
 sed 's/dog/cat/' test.txt # 把 dog 换成 cat
