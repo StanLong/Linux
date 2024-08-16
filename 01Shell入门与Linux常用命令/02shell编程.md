@@ -1287,6 +1287,8 @@ sed '/^3 the/a\hello world' test.txt # 在匹配到以 3 the 开头的行后面�
 # 行前插入
 sed 'i\hello world' test.txt # 在每行前面追加 hello world
 sed '3i\hello world' test.txt # 在第三行前面追加 hello world
+sed '/cat/i \this is a new line' # 在匹配前的前面插入一行
+sed '/cat/a \this is a new line' # 在匹配前的后面插入一行
 
 # 删除
 sed 'd' test.txt # 删除所有
@@ -1302,6 +1304,7 @@ sed 's/^/123&/g' test.txt
 
 # 在行尾添加456
 sed 's/$/&456/g' test.txt
+
 
 # 更改
 sed 'c\hello world' test.txt # 把每行的内容都改成 hello world
