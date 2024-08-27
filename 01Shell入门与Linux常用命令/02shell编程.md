@@ -1347,6 +1347,26 @@ sed -n '3,$p' test.txt
 3 the quick brown fox jumps over the lazy dog.
 4 the quick brown fox jumps over the lazy dog.
 5 the quick brown fox jumps over the lazy dog.
+
+----------------------------------------------------------------------------------------------------------------------------
+# 注释与取消注释
+# 测试文件
+cat iptables22.txt
+-A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 80 -j DROP
+-A INPUT -p tcp -m tcp --dport 443 -j DROP
+
+# 给DROP前面全部加上注释
+sed -i "s/^[^#].*DROP$/#&/g" iptables22.txt
+#： s:替换
+#:  ^:开头匹配
+#： [^#]:匹配非#
+#： #&:中的&代表匹配整行，整个意思就是行前面加上#号
+#： g:全部（只匹配特定行不加）
+
+# 取消DROP前面的注释
+sed -i "/^#.*DROP$/s/^#//" iptables22.txt
+#：^#//:去掉代表开头的#
 ```
 
 ## 十三、awk命令
