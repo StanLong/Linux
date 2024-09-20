@@ -1281,6 +1281,7 @@ w filename:         将替换的结果写入文件
 sed 'ahello world' test.txt # 在每行后面都新增一行 hello world， 为方便区分命令，命令后面加一个转义\
 sed 'a\hello world' test.txt # 在每行后面都新增一行 hello world
 sed '3a\hello world' test.txt # 在第三行后面新增一行 hello world
+sed '$a\hello world' test.txt # 在最后一行插入 hello world
 sed '2,4a\hello world' test.txt # 在第2，3，4后面新增一行 hello world
 sed '/^3 the/a\hello world' test.txt # 在匹配到以 3 the 开头的行后面追加一行 hello world
 
