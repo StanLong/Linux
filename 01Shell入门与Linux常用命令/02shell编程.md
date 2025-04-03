@@ -304,11 +304,11 @@ unset name # 取消变量
    $12 = l
    ```
 
-   $* 与 $# 的区别
+   $* 与 $@ 的区别
 
    $*  :  表示将变量看成一个整体 
 
-   $#  :   表示变量是独立的
+   $@  :   表示变量是独立的
 
 ## 五、Shell中的运算
 
@@ -1515,6 +1515,8 @@ awk 'END{print $0}' data
 awk 'END{print NF}' data
 # 去重
 awk '!($1 in a){a[$1];print $1}'
+# 将两列拼接到一起
+awk '{image=$1":"$2; print image}'
 ```
 
 ### 2、实例

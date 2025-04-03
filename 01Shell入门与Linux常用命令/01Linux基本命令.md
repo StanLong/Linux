@@ -789,3 +789,12 @@ ps -A -ostat,ppid,pid,cmd |grep -e '^[Zz]'
 -o  自定义输出字段 stat（状态）、ppid（进程父id）、pid（进程id）、cmd（命令）
 因为状态为z或者Z的进程为僵尸进程，所以我们使用grep抓取stat状态为zZ进程
 ```
+
+### 拼接两列数据
+
+用`:` 替换两列数据中间的空格
+
+```shell
+docker images | grep harbor | tr -s " " | cut -d " " -f1,2| awk '{gsub(" ", ":"); print}'
+```
+
